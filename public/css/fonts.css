@@ -1,0 +1,24 @@
+@font-face {
+  font-family: bold;
+  src: url(../fonts/bold.ttf);
+}
+@font-face {
+  font-family: extralight;
+  src: url(../fonts/extralight.ttf);
+}
+@font-face {
+  font-family: hand;
+  src: url(../fonts/hand.ttf);
+}
+@font-face {
+  font-family: light;
+  src: url(../fonts/light.ttf);
+}
+@font-face {
+  font-family: regular;
+  src: url(../fonts/regular.ttf);
+}
+@font-face {
+  font-family: regularitalic;
+  src: url(../fonts/regularitalic.ttf);
+}

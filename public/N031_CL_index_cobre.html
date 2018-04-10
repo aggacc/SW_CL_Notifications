@@ -1,0 +1,140 @@
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="css/style_n031.css" />
+    <link rel="stylesheet" href="css/fonts.css" />
+    <link rel="stylesheet" href="css/swiper.min.css">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=480, user-scalable=no" id="viewport" />
+    <meta name="MobileOptimized" content="480" id="wViewport" />
+    <script src="js/swiper.js"></script>
+    <script src="js/jquery-1.12.4.js"></script>
+    <script src="js/analytics.js"></script>
+</head>
+
+<body>
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <section class="swiper-slide">
+                <article class="main_container">
+                    <article class="top_container">
+                        <div class="top_container__header">
+                            <div class="top_container__image"><img src="images/ic_router_wifi.png" class="ic_router_wifi"></div>
+                        </div>
+                        <span class="title regular"><span class="hand">Sincroniza</span> tu router
+                        <br> Smart WiFi Cobre Light Plus<br/>con la app
+                        </span>                        
+                    </article>
+                    <article class="bottom_container">
+                        <article id="router_down_container">
+                            <img id="router_down" src="images/router_light_plus_back.png" />
+                            <article id="pointer_router" class="cobre-light">
+                                
+                                <br/>
+                                <div class="explanation2_offset cobre-light">
+                                <span class="explanation2 regular"><span class="hand" id="explanation2_find">Encuéntralo</span>
+                                    <br/><span class="extralight"> en la parte inferior del router</span>
+                                </span>
+                                </div>
+                            </article>
+                        </article>
+                        <img src="images/pegatinaRouter.png" id="pegatina" />
+                    </article>
+                    <article class="slidepage_bottom_container">
+                        <p class="error_selected">
+                            Continuar.
+                        </p>
+                        <button id="main_page_button" class="button_select" data-link='noselected'>
+                            <span class="light explanation2">Continuar</span>
+                        </button>
+                    </article>
+                        <div class="top_container__back back_image_button">
+                            <a href="N031_CL_index.html" class="">
+                                <span span="" class="back_text">&lt; Volver</span>
+                            </a>
+                        </div>
+                </article>
+            </section>
+            <section id="third" class="swiper-slide">
+                <article class="main_container">
+                    <article class="top_container thirdScreen">
+                        <img src="images/ic_router_wifi.png" class="ic_router_wifi" />
+                        <br/>
+                        <span class="title regular"><span class="hand">Sincroniza</span> tu router
+                        <br> Smart WiFi Cobre Light Plus<br/>con la app
+                        </span>  
+                    </article>
+                    <article class="bottom_container flex_center">
+                        <div>
+                            <span class="explanation2 extralight"><span id="explanation3_introduce" class="hand">Introduce</span> la contraseña de 8 caracteres
+                            <br> y asocia el router a la app</span><br/> 
+                            <img src="images/pointer_bottom_left.png" id="pointer_img" />
+                            <article class="white_no_padding">
+                                <input type="text" placeholder="Contraseña router" class="light" disabled/>
+                            </article>
+                        </div>
+                        <div id="asociate_button" onclick="onButtonClick()">
+                            <span class="light explanation2">¡Listo!</span>
+                        </div>
+                    </article>
+                        <div class="top_container__back slidepage_back_button">
+                            <a href="#" class="">
+                                <span span="" class="back_text">&lt; Volver</span>
+                            </a>
+                        </div>
+                </article>
+            </section>
+        </div>
+        <div class="swiper-pagination"></div>
+    </div>
+<script>
+    var mySwiper = new Swiper('.swiper-container', {
+        loop: false,
+        allowTouchMove: false,
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+            renderBullet: function(index, className) {
+                return '<span class="' + className + '" id="bullet_color"></span>';
+            },
+        }
+    });
+
+    const ROUTE = 'smartwifi://route/';
+    const DEEPLINK = 'devicelist';
+    const NOTIFICATION_NUM = 'N031';
+
+    window.addEventListener('DOMContentLoaded', function() {
+        logEvent(ARG_OPEN_PAGE, {
+            [ARG_NOTIFICATION_NUM]: NOTIFICATION_NUM
+        });
+    });
+
+    function onButtonClick() {
+        logEvent(ARG_CTA, {
+            [ARG_NOTIFICATION_NUM]: NOTIFICATION_NUM,
+            [ARG_PAGE_NUM]: mySwiper.activeIndex.toString(),
+            [ARG_DEEPLINK]: DEEPLINK
+        });
+        location.href = ROUTE + DEEPLINK;
+    }
+
+    mySwiper.on('slideChange', function() {
+        logEvent(ARG_SWIPE, {
+            [ARG_NOTIFICATION_NUM]: NOTIFICATION_NUM,
+            [ARG_PAGE_NUM]: mySwiper.activeIndex.toString()
+        });
+    });
+    $('.slidepage_bottom_container').on('click', function() {
+        $('.swiper-container').animate({ scrollTop: 0 }, "slow");
+        mySwiper.slideNext();
+    });
+    $('.slidepage_back_button a').on('click', function(event) {
+        event.preventDefault();
+         mySwiper.slidePrev();
+    });
+</script>
+</body>
+
+</html>
